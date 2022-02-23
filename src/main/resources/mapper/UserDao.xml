@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wuliu.dao.UserDao">
+
+    <resultMap type="com.example.wuliu.entity.User" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="phonemun" column="phonemun" jdbcType="VARCHAR"/>
+        <result property="eMail" column="e-mail" jdbcType="VARCHAR"/>
+        <result property="qqnumber" column="qqnumber" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap">
+        select id,
+               username,
+               password,
+               title,
+               gender,
+               age,
+               address,
+               phonemun,
+               e - mail,
+               qqnumber
+        from user
+        where id = #{id}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
+        values (#{username}, #{password}, #{title}, #{gender}, #{age}, #{address}, #{phonemun}, #{eMail}, #{qqnumber})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.title}, #{entity.gender}, #{entity.age},
+            #{entity.address}, #{entity.phonemun}, #{entity.eMail}, #{entity.qqnumber})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.title}, #{entity.gender}, #{entity.age},
+            #{entity.address}, #{entity.phonemun}, #{entity.eMail}, #{entity.qqnumber})
+        </foreach>
+        on duplicate key update
+        username = values(username),
+        password = values(password),
+        title = values(title),
+        gender = values(gender),
+        age = values(age),
+        address = values(address),
+        phonemun = values(phonemun),
+        e-mail = values(e-mail),
+        qqnumber = values(qqnumber)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="phonemun != null and phonemun != ''">
+                phonemun = #{phonemun},
+            </if>
+            <if test="eMail != null and eMail != ''">
+                e-mail = #{eMail},
+            </if>
+            <if test="qqnumber != null and qqnumber != ''">
+                qqnumber = #{qqnumber},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from user
+        where id = #{id}
+    </delete>
+
+    <select id="getAll" resultMap="UserMap">
+        select $allSqlColumn()
+        from wuliu.user
+    </select>
+
+</mapper>
+

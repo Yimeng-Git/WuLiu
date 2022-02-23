@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.wuliu.dao.WaybillDao">
+
+    <resultMap type="com.example.wuliu.entity.Waybill" id="WaybillMap">
+        <result property="tntnumber" column="tntnumber" jdbcType="INTEGER"/>
+        <result property="senname" column="senname" jdbcType="VARCHAR"/>
+        <result property="senaddress" column="senaddress" jdbcType="VARCHAR"/>
+        <result property="senzipcode" column="senzipcode" jdbcType="VARCHAR"/>
+        <result property="senphonenum" column="senphonenum" jdbcType="VARCHAR"/>
+        <result property="goodsname" column="goodsname" jdbcType="VARCHAR"/>
+        <result property="rename" column="rename" jdbcType="VARCHAR"/>
+        <result property="recphonenum" column="recphonenum" jdbcType="VARCHAR"/>
+        <result property="recaddress" column="recaddress" jdbcType="VARCHAR"/>
+        <result property="reczipcode" column="reczipcode" jdbcType="VARCHAR"/>
+        <result property="carnum" column="carnum" jdbcType="VARCHAR"/>
+        <result property="arrive" column="arrive" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="WaybillMap">
+        select tntnumber,
+               senname,
+               senaddress,
+               senzipcode,
+               senphonenum,
+               goodsname,
+               rename,
+               recphonenum,
+               recaddress,
+               reczipcode,
+               carnum,
+               arrive
+        from waybill
+        where tntnumber = #{tntnumber}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="tntnumber" useGeneratedKeys="true">
+        insert into waybill(senname, senaddress, senzipcode, senphonenum, goodsname, rename, recphonenum, recaddress,
+                            reczipcode, carnum, arrive)
+        values (#{senname}, #{senaddress}, #{senzipcode}, #{senphonenum}, #{goodsname}, #{rename}, #{recphonenum},
+                #{recaddress}, #{reczipcode}, #{carnum}, #{arrive})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="tntnumber" useGeneratedKeys="true">
+        insert into waybill(senname, senaddress, senzipcode, senphonenum, goodsname, rename, recphonenum, recaddress,
+        reczipcode, carnum, arrive)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.senname}, #{entity.senaddress}, #{entity.senzipcode}, #{entity.senphonenum}, #{entity.goodsname},
+            #{entity.rename}, #{entity.recphonenum}, #{entity.recaddress}, #{entity.reczipcode}, #{entity.carnum},
+            #{entity.arrive})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="tntnumber" useGeneratedKeys="true">
+        insert into waybill(senname, senaddress, senzipcode, senphonenum, goodsname, rename, recphonenum, recaddress,
+        reczipcode, carnum, arrive)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.senname}, #{entity.senaddress}, #{entity.senzipcode}, #{entity.senphonenum}, #{entity.goodsname},
+            #{entity.rename}, #{entity.recphonenum}, #{entity.recaddress}, #{entity.reczipcode}, #{entity.carnum},
+            #{entity.arrive})
+        </foreach>
+        on duplicate key update
+        senname = values(senname),
+        senaddress = values(senaddress),
+        senzipcode = values(senzipcode),
+        senphonenum = values(senphonenum),
+        goodsname = values(goodsname),
+        rename = values(rename),
+        recphonenum = values(recphonenum),
+        recaddress = values(recaddress),
+        reczipcode = values(reczipcode),
+        carnum = values(carnum),
+        arrive = values(arrive)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update waybill
+        <set>
+            <if test="senname != null and senname != ''">
+                senname = #{senname},
+            </if>
+            <if test="senaddress != null and senaddress != ''">
+                senaddress = #{senaddress},
+            </if>
+            <if test="senzipcode != null and senzipcode != ''">
+                senzipcode = #{senzipcode},
+            </if>
+            <if test="senphonenum != null and senphonenum != ''">
+                senphonenum = #{senphonenum},
+            </if>
+            <if test="goodsname != null and goodsname != ''">
+                goodsname = #{goodsname},
+            </if>
+            <if test="rename != null and rename != ''">
+                rename = #{rename},
+            </if>
+            <if test="recphonenum != null and recphonenum != ''">
+                recphonenum = #{recphonenum},
+            </if>
+            <if test="recaddress != null and recaddress != ''">
+                recaddress = #{recaddress},
+            </if>
+            <if test="reczipcode != null and reczipcode != ''">
+                reczipcode = #{reczipcode},
+            </if>
+            <if test="carnum != null and carnum != ''">
+                carnum = #{carnum},
+            </if>
+            <if test="arrive != null and arrive != ''">
+                arrive = #{arrive},
+            </if>
+        </set>
+        where tntnumber = #{tntnumber}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from waybill
+        where tntnumber = #{tntnumber}
+    </delete>
+
+    <select id="getAll" resultMap="WaybillMap">
+        select $allSqlColumn()
+        from wuliu.waybill
+    </select>
+
+</mapper>
+
