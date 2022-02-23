@@ -2,6 +2,7 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Area;
 import com.example.wuliu.service.AreaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class AreaController {
     /**
      * 服务对象
      */
-    @Resource
+    @Autowired
     private AreaService areaService;
 
     /**

@@ -1,6 +1,7 @@
 package com.example.wuliu.dao;
 
 import com.example.wuliu.entity.Area;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author makejava
  * @since 2022-02-23 16:53:04
  */
+@Mapper
 public interface AreaDao {
 
     /**
