@@ -6,17 +6,17 @@ import com.example.wuliu.entity.Waybill;
  * (Waybill)表服务接口
  *
  * @author makejava
- * @since 2022-02-23 16:35:46
+ * @since 2022-03-27 15:42:00
  */
 public interface WaybillService {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param tntnumber 主键
+     * @param wid 主键
      * @return 实例对象
      */
-    Waybill queryById(Integer tntnumber);
+    Waybill queryById(Integer wid);
 
     /**
      * 新增数据
@@ -37,9 +37,9 @@ public interface WaybillService {
     /**
      * 通过主键删除数据
      *
-     * @param tntnumber 主键
+     * @param wid 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer tntnumber);
+    boolean deleteById(Integer wid);
 
 }

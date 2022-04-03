@@ -1,5 +1,6 @@
 package com.example.wuliu.util;
 
+import com.example.wuliu.entity.User;
 import lombok.Data;
 
 @Data
@@ -7,6 +8,7 @@ public class R {
     private int code;
     private String message;
     private Object data;
+
 
     /**
      * 设置数据

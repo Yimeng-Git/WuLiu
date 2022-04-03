@@ -3,13 +3,14 @@ package com.example.wuliu.dao;
 import com.example.wuliu.entity.Car;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
  * 车辆(Car)表数据库访问层
  *
  * @author makejava
- * @since 2022-02-23 15:58:55
+ * @since 2022-03-27 15:41:52
  */
 @Mapper
 public interface CarDao {
@@ -17,10 +18,10 @@ public interface CarDao {
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param cid 主键
      * @return 实例对象
      */
-    Car queryById(String id);
+    Car queryById(String cid);
 
     /**
      * 新增数据
@@ -58,14 +59,15 @@ public interface CarDao {
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param cid 主键
      * @return 影响行数
      */
-    int deleteById(String id);
+    int deleteById(String cid);
+
     /**
      * 查询全部
      *
-     * @param id 主键
+     * @param cid 主键
      * @return 影响行数
      */
     List<Car> getAll();

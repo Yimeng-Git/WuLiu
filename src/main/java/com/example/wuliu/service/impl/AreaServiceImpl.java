@@ -3,7 +3,6 @@ package com.example.wuliu.service.impl;
 import com.example.wuliu.entity.Area;
 import com.example.wuliu.dao.AreaDao;
 import com.example.wuliu.service.AreaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,11 +11,11 @@ import javax.annotation.Resource;
  * (Area)表服务实现类
  *
  * @author makejava
- * @since 2022-02-23 16:53:05
+ * @since 2022-03-27 15:41:51
  */
 @Service("areaService")
 public class AreaServiceImpl implements AreaService {
-    @Autowired
+    @Resource
     private AreaDao areaDao;
 
     /**

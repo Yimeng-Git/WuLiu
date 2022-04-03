@@ -1,24 +1,22 @@
 package com.example.wuliu.entity;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
  * 车辆(Car)实体类
  *
  * @author makejava
- * @since 2022-02-23 15:58:55
+ * @since 2022-03-27 15:41:52
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Car implements Serializable {
-    private static final long serialVersionUID = -36382880536017949L;
-    /**
-     * 主键
-     */
-    private String id;
-    /**
-     * 车辆编号
-     */
-    private String number;
+    private static final long serialVersionUID = 146124969725259010L;
     /**
      * 所属地区
      */
@@ -28,50 +26,17 @@ public class Car implements Serializable {
      */
     private String destination;
     /**
-     * 到达时间
+     * 主键
      */
-    private Date arrivetime;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public Date getArrivetime() {
-        return arrivetime;
-    }
-
-    public void setArrivetime(Date arrivetime) {
-        this.arrivetime = arrivetime;
-    }
+    private String cid;
+    /**
+     * 车辆编号
+     */
+    private String carnum;
+    /**
+     * 车辆状态（0:空闲中，1:运输中）
+     */
+    private String status;
 
 }
 

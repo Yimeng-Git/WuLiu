@@ -2,7 +2,6 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Waybill;
 import com.example.wuliu.service.WaybillService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +11,7 @@ import javax.annotation.Resource;
  * (Waybill)表控制层
  *
  * @author makejava
- * @since 2022-02-23 16:35:46
+ * @since 2022-03-27 15:41:59
  */
 @RestController
 @RequestMapping("waybill")
@@ -20,7 +19,7 @@ public class WaybillController {
     /**
      * 服务对象
      */
-    @Autowired
+    @Resource
     private WaybillService waybillService;
 
     /**

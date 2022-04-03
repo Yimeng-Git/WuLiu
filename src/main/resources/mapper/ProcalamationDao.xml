@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace=".dao.ProcalamationDao">
+<mapper namespace="com.example.wuliu.dao.ProcalamationDao">
 
     <resultMap type="com.example.wuliu.entity.Procalamation" id="ProcalamationMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="time" column="time" jdbcType="TIMESTAMP"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ProcalamationMap">
-        select id,
-               content,
-               title, time
+        select content,
+               title, time, pid
         from procalamation
-        where id = #{id}
+        where pid = #{pid}
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" keyProperty="pid" useGeneratedKeys="true">
         insert into procalamation(content, title, time)
         values (#{content}, #{title}, #{time})
     </insert>
 
-    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insertBatch" keyProperty="pid" useGeneratedKeys="true">
         insert into procalamation(content, title, time)
         values
         <foreach collection="entities" item="entity" separator=",">
@@ -32,7 +31,7 @@
         </foreach>
     </insert>
 
-    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insertOrUpdateBatch" keyProperty="pid" useGeneratedKeys="true">
         insert into procalamation(content, title, time)
         values
         <foreach collection="entities" item="entity" separator=",">
@@ -58,14 +57,14 @@
                 time = #{time},
             </if>
         </set>
-        where id = #{id}
+        where pid = #{pid}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
         from procalamation
-        where id = #{id}
+        where pid = #{pid}
     </delete>
 
     <select id="getAll" resultMap="ProcalamationMap">

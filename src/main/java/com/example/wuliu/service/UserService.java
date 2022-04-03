@@ -6,7 +6,7 @@ import com.example.wuliu.entity.User;
  * (User)表服务接口
  *
  * @author makejava
- * @since 2022-02-23 16:35:46
+ * @since 2022-03-27 15:41:58
  */
 public interface UserService {
 
@@ -42,4 +42,11 @@ public interface UserService {
      */
     boolean deleteById(Integer id);
 
+    /*
+     * @Author yym
+     * @Description //TODO 登录
+     * @Date  2022/3/27 16:29
+     * @Param [username, password]
+     */
+    String adminLogin(String username, String password);
 }

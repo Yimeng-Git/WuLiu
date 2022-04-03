@@ -1,9 +1,7 @@
 package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Car;
-
 import com.example.wuliu.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +11,7 @@ import javax.annotation.Resource;
  * 车辆(Car)表控制层
  *
  * @author makejava
- * @since 2022-02-23 15:58:55
+ * @since 2022-03-27 15:41:51
  */
 @RestController
 @RequestMapping("car")
@@ -21,7 +19,7 @@ public class CarController {
     /**
      * 服务对象
      */
-    @Autowired
+    @Resource
     private CarService carService;
 
     /**

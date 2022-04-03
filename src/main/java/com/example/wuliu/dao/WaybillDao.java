@@ -10,7 +10,7 @@ import java.util.List;
  * (Waybill)表数据库访问层
  *
  * @author makejava
- * @since 2022-02-23 16:35:46
+ * @since 2022-03-27 15:41:59
  */
 @Mapper
 public interface WaybillDao {
@@ -18,10 +18,10 @@ public interface WaybillDao {
     /**
      * 通过ID查询单条数据
      *
-     * @param tntnumber 主键
+     * @param wid 主键
      * @return 实例对象
      */
-    Waybill queryById(Integer tntnumber);
+    Waybill queryById(Integer wid);
 
     /**
      * 新增数据
@@ -59,15 +59,15 @@ public interface WaybillDao {
     /**
      * 通过主键删除数据
      *
-     * @param tntnumber 主键
+     * @param wid 主键
      * @return 影响行数
      */
-    int deleteById(Integer tntnumber);
+    int deleteById(Integer wid);
 
     /**
      * 查询全部
      *
-     * @param tntnumber 主键
+     * @param wid 主键
      * @return 影响行数
      */
     List<Waybill> getAll();

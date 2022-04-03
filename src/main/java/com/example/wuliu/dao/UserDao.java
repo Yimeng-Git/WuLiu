@@ -10,7 +10,7 @@ import java.util.List;
  * (User)表数据库访问层
  *
  * @author makejava
- * @since 2022-02-23 16:35:45
+ * @since 2022-03-27 15:41:57
  */
 @Mapper
 public interface UserDao {
@@ -71,5 +71,7 @@ public interface UserDao {
      * @return 影响行数
      */
     List<User> getAll();
+
+    User selectOne(User user);
 }
 

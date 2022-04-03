@@ -1,14 +1,14 @@
 package com.example.wuliu.service;
 
-import com.example.wuliu.entity.Area;
+import com.example.wuliu.entity.Traninfo;
 
 /**
- * (Area)表服务接口
+ * (Traninfo)表服务接口
  *
  * @author makejava
- * @since 2022-03-27 15:41:51
+ * @since 2022-03-27 15:41:56
  */
-public interface AreaService {
+public interface TraninfoService {
 
     /**
      * 通过ID查询单条数据
@@ -16,23 +16,23 @@ public interface AreaService {
      * @param id 主键
      * @return 实例对象
      */
-    Area queryById(Integer id);
+    Traninfo queryById(Integer id);
 
     /**
      * 新增数据
      *
-     * @param area 实例对象
+     * @param traninfo 实例对象
      * @return 实例对象
      */
-    Area insert(Area area);
+    Traninfo insert(Traninfo traninfo);
 
     /**
      * 修改数据
      *
-     * @param area 实例对象
+     * @param traninfo 实例对象
      * @return 实例对象
      */
-    Area update(Area area);
+    Traninfo update(Traninfo traninfo);
 
     /**
      * 通过主键删除数据

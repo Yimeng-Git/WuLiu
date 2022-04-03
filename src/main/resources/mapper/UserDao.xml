@@ -6,13 +6,11 @@
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="gender" column="gender" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
         <result property="address" column="address" jdbcType="VARCHAR"/>
         <result property="phonemun" column="phonemun" jdbcType="VARCHAR"/>
-        <result property="eMail" column="e-mail" jdbcType="VARCHAR"/>
-        <result property="qqnumber" column="qqnumber" jdbcType="VARCHAR"/>
+        <result property="eMail" column="eMail" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
@@ -20,49 +18,59 @@
         select id,
                username,
                password,
-               title,
                gender,
                age,
                address,
                phonemun,
-               e - mail,
-               qqnumber
+               eMail
         from user
         where id = #{id}
     </select>
 
+    <!--查询一个-->
+    <select id="selectOne" resultMap="UserMap">
+        select id,
+               username,
+               password,
+               gender,
+               age,
+               address,
+               phonemun,
+               eMail
+        from user
+        where username = #{username}
+          and password = #{password}
+    </select>
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
-        values (#{username}, #{password}, #{title}, #{gender}, #{age}, #{address}, #{phonemun}, #{eMail}, #{qqnumber})
+        insert into user(username, password, gender, age, address, phonemun, e-mail)
+        values (#{username}, #{password}, #{gender}, #{age}, #{address}, #{phonemun}, #{eMail})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
+        insert into user(username, password, gender, age, address, phonemun, e-mail)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.username}, #{entity.password}, #{entity.title}, #{entity.gender}, #{entity.age},
-            #{entity.address}, #{entity.phonemun}, #{entity.eMail}, #{entity.qqnumber})
+            (#{entity.username}, #{entity.password}, #{entity.gender}, #{entity.age}, #{entity.address},
+            #{entity.phonemun}, #{entity.eMail})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, title, gender, age, address, phonemun, e-mail, qqnumber)
+        insert into user(username, password, gender, age, address, phonemun, e-mail)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.username}, #{entity.password}, #{entity.title}, #{entity.gender}, #{entity.age},
-            #{entity.address}, #{entity.phonemun}, #{entity.eMail}, #{entity.qqnumber})
+            (#{entity.username}, #{entity.password}, #{entity.gender}, #{entity.age}, #{entity.address},
+            #{entity.phonemun}, #{entity.eMail})
         </foreach>
         on duplicate key update
         username = values(username),
         password = values(password),
-        title = values(title),
         gender = values(gender),
         age = values(age),
         address = values(address),
         phonemun = values(phonemun),
-        e-mail = values(e-mail),
-        qqnumber = values(qqnumber)
+        e-mail = values(e-mail)
     </insert>
 
     <!--通过主键修改数据-->
@@ -74,9 +82,6 @@
             </if>
             <if test="password != null and password != ''">
                 password = #{password},
-            </if>
-            <if test="title != null and title != ''">
-                title = #{title},
             </if>
             <if test="gender != null and gender != ''">
                 gender = #{gender},
@@ -92,9 +97,6 @@
             </if>
             <if test="eMail != null and eMail != ''">
                 e-mail = #{eMail},
-            </if>
-            <if test="qqnumber != null and qqnumber != ''">
-                qqnumber = #{qqnumber},
             </if>
         </set>
         where id = #{id}

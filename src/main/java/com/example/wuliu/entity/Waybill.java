@@ -1,19 +1,26 @@
 package com.example.wuliu.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
  * (Waybill)实体类
  *
  * @author makejava
- * @since 2022-02-23 16:35:46
+ * @since 2022-03-27 15:41:59
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Waybill implements Serializable {
-    private static final long serialVersionUID = 554151070262899365L;
+    private static final long serialVersionUID = 296710784806404315L;
     /**
-     * 主键
+     * 订单号
      */
-    private Integer tntnumber;
+    private String tntnumber;
     /**
      * 寄件人姓名
      */
@@ -58,103 +65,13 @@ public class Waybill implements Serializable {
      * 到达状态
      */
     private String arrive;
-
-
-    public Integer getTntnumber() {
-        return tntnumber;
-    }
-
-    public void setTntnumber(Integer tntnumber) {
-        this.tntnumber = tntnumber;
-    }
-
-    public String getSenname() {
-        return senname;
-    }
-
-    public void setSenname(String senname) {
-        this.senname = senname;
-    }
-
-    public String getSenaddress() {
-        return senaddress;
-    }
-
-    public void setSenaddress(String senaddress) {
-        this.senaddress = senaddress;
-    }
-
-    public String getSenzipcode() {
-        return senzipcode;
-    }
-
-    public void setSenzipcode(String senzipcode) {
-        this.senzipcode = senzipcode;
-    }
-
-    public String getSenphonenum() {
-        return senphonenum;
-    }
-
-    public void setSenphonenum(String senphonenum) {
-        this.senphonenum = senphonenum;
-    }
-
-    public String getGoodsname() {
-        return goodsname;
-    }
-
-    public void setGoodsname(String goodsname) {
-        this.goodsname = goodsname;
-    }
-
-    public String getRename() {
-        return rename;
-    }
-
-    public void setRename(String rename) {
-        this.rename = rename;
-    }
-
-    public String getRecphonenum() {
-        return recphonenum;
-    }
-
-    public void setRecphonenum(String recphonenum) {
-        this.recphonenum = recphonenum;
-    }
-
-    public String getRecaddress() {
-        return recaddress;
-    }
-
-    public void setRecaddress(String recaddress) {
-        this.recaddress = recaddress;
-    }
-
-    public String getReczipcode() {
-        return reczipcode;
-    }
-
-    public void setReczipcode(String reczipcode) {
-        this.reczipcode = reczipcode;
-    }
-
-    public String getCarnum() {
-        return carnum;
-    }
-
-    public void setCarnum(String carnum) {
-        this.carnum = carnum;
-    }
-
-    public String getArrive() {
-        return arrive;
-    }
-
-    public void setArrive(String arrive) {
-        this.arrive = arrive;
-    }
-
+    /**
+     * wid
+     */
+    private Integer wid;
+    /**
+     * 运单状态码（0:待运输，1:正在运输）
+     */
+    private String status;
 }
 

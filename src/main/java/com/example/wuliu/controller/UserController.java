@@ -2,17 +2,21 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.User;
 import com.example.wuliu.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.wuliu.util.R;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * (User)表控制层
  *
  * @author makejava
- * @since 2022-02-23 16:35:45
+ * @since 2022-03-27 15:41:57
  */
 @RestController
 @RequestMapping("user")
@@ -20,7 +24,7 @@ public class UserController {
     /**
      * 服务对象
      */
-    @Autowired
+    @Resource
     private UserService userService;
 
     /**
@@ -30,8 +34,30 @@ public class UserController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<User> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.userService.queryById(id));
+    public R queryById(@PathVariable("id") Integer id) {
+        return R.ok().setData(this.userService.queryById(id));
+    }
+
+    /*
+     * @Author yym
+     * @Description //TODO 登录
+     * @Date  2022/3/27 16:29
+     * @Param [username, password]
+     */
+//    @GetMapping
+//    public R adminLogin(String username, String password) {
+//
+//
+//        return R.ok().setData(this.userService.adminLogin(username, password));
+//    }
+    @GetMapping("/login")
+    public ResponseEntity<String> adminLogin(String username,String password) {
+        String token = this.userService.adminLogin(username, password);
+//        System.out.print(token);
+        if (StringUtils.isBlank(token)) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        return ResponseEntity.ok("Bearer:" + token);
     }
 
     /**
