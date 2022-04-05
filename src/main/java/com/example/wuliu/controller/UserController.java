@@ -2,6 +2,7 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.User;
 import com.example.wuliu.service.UserService;
+import com.example.wuliu.util.JwtUtils;
 import com.example.wuliu.util.R;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @since 2022-03-27 15:41:57
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     /**
      * 服务对象
@@ -40,19 +41,30 @@ public class UserController {
 
     /*
      * @Author yym
+     * @Description //TODO 校验用户是否登录
+     * @Date  2022/4/5 11:05
+     * @Param [token]
+     */
+    @GetMapping("/verify")
+    public ResponseEntity<Boolean> verify(@RequestParam("token") String token) {
+
+        token = token.substring(7, token.length());
+        if (StringUtils.isBlank(token)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
+        }
+        return ResponseEntity.ok(JwtUtils.verfy(token));
+    }
+
+    /*
+     * @Author yym
      * @Description //TODO 登录
      * @Date  2022/3/27 16:29
      * @Param [username, password]
      */
-//    @GetMapping
-//    public R adminLogin(String username, String password) {
-//
-//
-//        return R.ok().setData(this.userService.adminLogin(username, password));
-//    }
-    @GetMapping("/login")
-    public ResponseEntity<String> adminLogin(String username,String password) {
-        String token = this.userService.adminLogin(username, password);
+    @PostMapping("/login")
+    public ResponseEntity<String> adminLogin(@RequestBody User user, HttpServletRequest request,
+                                             HttpServletResponse response) {
+        String token = this.userService.adminLogin(user.getUsername(), user.getPassword());
 //        System.out.print(token);
         if (StringUtils.isBlank(token)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

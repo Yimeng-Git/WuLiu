@@ -18,10 +18,10 @@ public interface WaybillDao {
     /**
      * 通过ID查询单条数据
      *
-     * @param wid 主键
+     * @param tntnumber 订单号
      * @return 实例对象
      */
-    Waybill queryById(Integer wid);
+    Waybill queryByNumber(String tntnumber);
 
     /**
      * 新增数据

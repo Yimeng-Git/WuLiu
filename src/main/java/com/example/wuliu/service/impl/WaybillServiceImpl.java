@@ -1,7 +1,7 @@
 package com.example.wuliu.service.impl;
 
-import com.example.wuliu.entity.Waybill;
 import com.example.wuliu.dao.WaybillDao;
+import com.example.wuliu.entity.Waybill;
 import com.example.wuliu.service.WaybillService;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +21,12 @@ public class WaybillServiceImpl implements WaybillService {
     /**
      * 通过ID查询单条数据
      *
-     * @param wid 主键
+     * @param tntnumber 订单号
      * @return 实例对象
      */
     @Override
-    public Waybill queryById(Integer wid) {
-        return this.waybillDao.queryById(wid);
+    public Waybill queryByNumber(String tntnumber) {
+        return this.waybillDao.queryByNumber(tntnumber);
     }
 
     /**
@@ -47,11 +47,11 @@ public class WaybillServiceImpl implements WaybillService {
      * @param waybill 实例对象
      * @return 实例对象
      */
-    @Override
-    public Waybill update(Waybill waybill) {
-        this.waybillDao.update(waybill);
-        return this.queryById(waybill.getWid());
-    }
+//    @Override
+//    public Waybill update(Waybill waybill) {
+//        this.waybillDao.update(waybill);
+//        return this.queryById(waybill.getWid());
+//    }
 
     /**
      * 通过主键删除数据

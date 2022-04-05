@@ -2,6 +2,7 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Procalamation;
 import com.example.wuliu.service.ProcalamationService;
+import com.example.wuliu.util.R;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,17 @@ public class ProcalamationController {
     @GetMapping("{id}")
     public ResponseEntity<Procalamation> queryById(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.procalamationService.queryById(id));
+    }
+
+    /*
+     * @Author yym
+     * @Description //TODO
+     * @Date  2022/4/4 11:03
+     * @Param []
+     */
+    @GetMapping("/newNotice")
+    public R newNotice() {
+        return R.ok().setData(this.procalamationService.newNotice());
     }
 
     /**
@@ -64,6 +76,11 @@ public class ProcalamationController {
     @DeleteMapping
     public ResponseEntity<Boolean> deleteById(Integer id) {
         return ResponseEntity.ok(this.procalamationService.deleteById(id));
+    }
+
+    @GetMapping("/getAll")
+    public R getAll() {
+        return R.ok().setData(this.procalamationService.getALl());
     }
 
 }

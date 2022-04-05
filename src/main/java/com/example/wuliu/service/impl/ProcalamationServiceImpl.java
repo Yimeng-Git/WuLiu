@@ -1,11 +1,12 @@
 package com.example.wuliu.service.impl;
 
-import com.example.wuliu.entity.Procalamation;
 import com.example.wuliu.dao.ProcalamationDao;
+import com.example.wuliu.entity.Procalamation;
 import com.example.wuliu.service.ProcalamationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Procalamation)表服务实现类
@@ -63,4 +64,16 @@ public class ProcalamationServiceImpl implements ProcalamationService {
     public boolean deleteById(Integer pid) {
         return this.procalamationDao.deleteById(pid) > 0;
     }
+
+    @Override
+    public Procalamation newNotice() {
+
+        return this.procalamationDao.newNotice();
+    }
+
+    @Override
+    public List<Procalamation> getALl() {
+        return this.procalamationDao.getAll();
+    }
+
 }

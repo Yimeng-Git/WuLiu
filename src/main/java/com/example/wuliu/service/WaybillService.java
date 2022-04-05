@@ -13,10 +13,10 @@ public interface WaybillService {
     /**
      * 通过ID查询单条数据
      *
-     * @param wid 主键
+     * @param tntnumber 订单号
      * @return 实例对象
      */
-    Waybill queryById(Integer wid);
+    Waybill queryByNumber(String tntnumber);
 
     /**
      * 新增数据
@@ -32,7 +32,7 @@ public interface WaybillService {
      * @param waybill 实例对象
      * @return 实例对象
      */
-    Waybill update(Waybill waybill);
+//    Waybill update(Waybill waybill);
 
     /**
      * 通过主键删除数据

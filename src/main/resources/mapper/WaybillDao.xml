@@ -9,7 +9,7 @@
         <result property="senzipcode" column="senzipcode" jdbcType="VARCHAR"/>
         <result property="senphonenum" column="senphonenum" jdbcType="VARCHAR"/>
         <result property="goodsname" column="goodsname" jdbcType="VARCHAR"/>
-        <result property="rename" column="rename" jdbcType="VARCHAR"/>
+        <result property="recname" column="recname" jdbcType="VARCHAR"/>
         <result property="recphonenum" column="recphonenum" jdbcType="VARCHAR"/>
         <result property="recaddress" column="recaddress" jdbcType="VARCHAR"/>
         <result property="reczipcode" column="reczipcode" jdbcType="VARCHAR"/>
@@ -20,14 +20,14 @@
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="WaybillMap">
+    <select id="queryByNumber" resultMap="WaybillMap">
         select tntnumber,
                senname,
                senaddress,
                senzipcode,
                senphonenum,
                goodsname,
-               rename,
+               recname,
                recphonenum,
                recaddress,
                reczipcode,
@@ -36,7 +36,7 @@
                wid,
                status
         from waybill
-        where wid = #{wid}
+        where tntnumber = #{tntnumber}
     </select>
 
     <!--新增所有列-->

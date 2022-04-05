@@ -71,5 +71,13 @@ public interface ProcalamationDao {
      * @return 影响行数
      */
     List<Procalamation> getAll();
+
+    /*
+     * @Author yym
+     * @Description //TODO
+     * @Date  2022/4/4 11:05
+     * @Param []
+     */
+    Procalamation newNotice();
 }
 

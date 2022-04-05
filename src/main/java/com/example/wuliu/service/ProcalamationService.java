@@ -2,6 +2,8 @@ package com.example.wuliu.service;
 
 import com.example.wuliu.entity.Procalamation;
 
+import java.util.List;
+
 /**
  * (Procalamation)表服务接口
  *
@@ -42,4 +44,7 @@ public interface ProcalamationService {
      */
     boolean deleteById(Integer pid);
 
+    Procalamation newNotice();
+
+    List<Procalamation> getALl();
 }

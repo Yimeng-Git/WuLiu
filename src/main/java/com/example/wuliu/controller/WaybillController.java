@@ -28,9 +28,10 @@ public class WaybillController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
-    public ResponseEntity<Waybill> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.waybillService.queryById(id));
+    @GetMapping("/number/{tntnumber}")
+    public ResponseEntity<Waybill> queryById(@PathVariable("tntnumber") String tntnumber) {
+        System.out.println(tntnumber);
+        return ResponseEntity.ok(this.waybillService.queryByNumber(tntnumber));
     }
 
     /**
@@ -50,10 +51,10 @@ public class WaybillController {
      * @param waybill 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<Waybill> edit(Waybill waybill) {
-        return ResponseEntity.ok(this.waybillService.update(waybill));
-    }
+//    @PutMapping
+//    public ResponseEntity<Waybill> edit(Waybill waybill) {
+//        return ResponseEntity.ok(this.waybillService.update(waybill));
+//    }
 
     /**
      * 删除数据

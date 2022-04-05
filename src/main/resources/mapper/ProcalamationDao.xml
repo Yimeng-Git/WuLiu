@@ -17,6 +17,14 @@
         where pid = #{pid}
     </select>
 
+    <!--查询最新公告-->
+    <select id="newNotice" resultMap="ProcalamationMap">
+        select content,
+               title, time, pid
+        from procalamation
+        order by time DESC limit 0, 1
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="pid" useGeneratedKeys="true">
         insert into procalamation(content, title, time)

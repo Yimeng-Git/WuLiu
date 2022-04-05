@@ -44,7 +44,7 @@ public class Waybill implements Serializable {
     /**
      * 收件人姓名
      */
-    private String rename;
+    private String recname;
     /**
      * 收件人手机号
      */
