@@ -27,7 +27,7 @@
         where id = #{id}
     </select>
 
-    <!--查询一个-->
+    <!-- 登录 -->
     <select id="selectOne" resultMap="UserMap">
         select id,
                username,
@@ -41,14 +41,14 @@
         where username = #{username}
           and password = #{password}
     </select>
-    <!--新增所有列-->
+    <!-- 注册 -->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, gender, age, address, phonemun, e-mail)
+        insert into user(username, password, gender, age, address, phonemun, eMail)
         values (#{username}, #{password}, #{gender}, #{age}, #{address}, #{phonemun}, #{eMail})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, gender, age, address, phonemun, e-mail)
+        insert into user(username, password, gender, age, address, phonemun, eMail)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.username}, #{entity.password}, #{entity.gender}, #{entity.age}, #{entity.address},
@@ -57,7 +57,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into user(username, password, gender, age, address, phonemun, e-mail)
+        insert into user(username, password, gender, age, address, phonemun, eMail)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.username}, #{entity.password}, #{entity.gender}, #{entity.age}, #{entity.address},
@@ -96,7 +96,7 @@
                 phonemun = #{phonemun},
             </if>
             <if test="eMail != null and eMail != ''">
-                e-mail = #{eMail},
+                eMail = #{eMail},
             </if>
         </set>
         where id = #{id}

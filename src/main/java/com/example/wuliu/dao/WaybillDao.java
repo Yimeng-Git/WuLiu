@@ -71,5 +71,7 @@ public interface WaybillDao {
      * @return 影响行数
      */
     List<Waybill> getAll();
+
+    List<Waybill> queryAll(Waybill waybill);
 }
 

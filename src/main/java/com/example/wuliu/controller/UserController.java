@@ -78,9 +78,9 @@ public class UserController {
      * @param user 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<User> add(User user) {
-        return ResponseEntity.ok(this.userService.insert(user));
+    @PostMapping("/register")
+    public R add(@RequestBody User user) {
+        return R.ok().setData(this.userService.insert(user));
     }
 
     /**

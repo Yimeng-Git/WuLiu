@@ -24,7 +24,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User insert(User user);
+    boolean insert(User user);
 
     /**
      * 修改数据
@@ -49,5 +49,5 @@ public interface UserService {
      * @Param [username, password]
      */
     String adminLogin(String username, String password);
-    
+
 }

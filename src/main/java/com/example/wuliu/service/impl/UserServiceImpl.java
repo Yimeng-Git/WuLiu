@@ -38,9 +38,8 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User insert(User user) {
-        this.userDao.insert(user);
-        return user;
+    public boolean insert(User user) {
+        return this.userDao.insert(user) > 0;
     }
 
     /**
@@ -90,7 +89,7 @@ public class UserServiceImpl implements UserService {
             //查询成功，则生成token
             String token = JwtUtils.Sign(username, String.valueOf(id));
             return token;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -3,9 +3,12 @@ package com.example.wuliu.service.impl;
 import com.example.wuliu.dao.WaybillDao;
 import com.example.wuliu.entity.Waybill;
 import com.example.wuliu.service.WaybillService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Waybill)表服务实现类
@@ -62,5 +65,14 @@ public class WaybillServiceImpl implements WaybillService {
     @Override
     public boolean deleteById(Integer wid) {
         return this.waybillDao.deleteById(wid) > 0;
+    }
+
+    @Override
+    public PageInfo<Waybill> queryAll(Integer pageNum, Integer pageSize, Waybill waybill) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Waybill> waybillList = waybillDao.queryAll(waybill);
+        PageInfo<Waybill> pageInfo = new PageInfo<Waybill>(waybillList);
+        System.out.println(pageInfo);
+        return pageInfo;
     }
 }

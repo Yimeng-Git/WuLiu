@@ -1,6 +1,7 @@
 package com.example.wuliu.service;
 
 import com.example.wuliu.entity.Waybill;
+import com.github.pagehelper.PageInfo;
 
 /**
  * (Waybill)表服务接口
@@ -42,4 +43,5 @@ public interface WaybillService {
      */
     boolean deleteById(Integer wid);
 
+    PageInfo<Waybill> queryAll(Integer pageNum, Integer pageSize, Waybill waybill);
 }

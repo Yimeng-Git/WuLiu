@@ -12,7 +12,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         if (authHeader == null || !authHeader.startsWith("Bearer:")) {
             return false;
         }
-
         //获得token
         String token = authHeader.substring(7);
         System.out.println(token);

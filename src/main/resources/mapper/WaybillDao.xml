@@ -137,9 +137,31 @@
         where wid = #{wid}
     </delete>
 
-    <select id="getAll" resultMap="WaybillMap">
-        select $allSqlColumn()
-        from wuliu.waybill
+    <select id="queryAll" resultMap="WaybillMap">
+        select tntnumber,
+        senname,
+        senaddress,
+        senzipcode,
+        senphonenum,
+        goodsname,
+        recname,
+        recphonenum,
+        recaddress,
+        reczipcode,
+        carnum,
+        arrive,
+        wid,
+        status
+        from waybill
+        <where>
+            <if test="status!=null and status!=''">
+                and status = #{status}
+            </if>
+            <if test="tntnumber!=null and tntnumber!=''">
+                and tntnumber like '%${tntnumber}%'
+            </if>
+
+        </where>
     </select>
 
 </mapper>

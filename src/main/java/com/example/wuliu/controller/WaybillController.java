@@ -2,6 +2,7 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Waybill;
 import com.example.wuliu.service.WaybillService;
+import com.example.wuliu.util.R;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class WaybillController {
     /**
      * 通过主键查询单条数据
      *
-     * @param id 主键
+     * @param
      * @return 单条数据
      */
     @GetMapping("/number/{tntnumber}")
@@ -33,6 +34,19 @@ public class WaybillController {
         System.out.println(tntnumber);
         return ResponseEntity.ok(this.waybillService.queryByNumber(tntnumber));
     }
+
+    /*
+     * @Author yym
+     * @Description //TODO 查询所有
+     * @Date  2022/4/5 18:23
+     * @Param []
+     */
+    @GetMapping("/findAll")
+    public R fandAll(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                     @RequestParam(value = "pageSize") Integer pageSize, Waybill waybill) {
+        return R.ok().setData(this.waybillService.queryAll(pageNum, pageSize, waybill));
+    }
+
 
     /**
      * 新增数据
