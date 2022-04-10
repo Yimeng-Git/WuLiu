@@ -62,23 +62,25 @@ public class WaybillController {
     /**
      * 编辑数据
      *
-     * @param waybill 实体
+     * @param tntnumber 实体
      * @return 编辑结果
      */
-//    @PutMapping
-//    public ResponseEntity<Waybill> edit(Waybill waybill) {
-//        return ResponseEntity.ok(this.waybillService.update(waybill));
-//    }
+    @PutMapping("/success/{tntnumber}")
+    public R edit(@PathVariable String tntnumber) {
+        
+        return R.ok().setData(this.waybillService.update(tntnumber));
+    }
 
     /**
      * 删除数据
      *
-     * @param id 主键
+     * @param tntnumber 实体
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.waybillService.deleteById(id));
+    @DeleteMapping("/delete/{tntnumber}")
+    public R deleteById(@PathVariable String tntnumber) {
+
+        return R.ok().setData(this.waybillService.deleteById(tntnumber));
     }
 
 }

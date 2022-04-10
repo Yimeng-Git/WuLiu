@@ -51,10 +51,10 @@ public interface WaybillDao {
     /**
      * 修改数据
      *
-     * @param waybill 实例对象
+     * @param tntnumber 实例
      * @return 影响行数
      */
-    int update(Waybill waybill);
+    int update(String tntnumber);
 
     /**
      * 通过主键删除数据
@@ -62,7 +62,7 @@ public interface WaybillDao {
      * @param wid 主键
      * @return 影响行数
      */
-    int deleteById(Integer wid);
+    int deleteById(String tntnumber);
 
     /**
      * 查询全部

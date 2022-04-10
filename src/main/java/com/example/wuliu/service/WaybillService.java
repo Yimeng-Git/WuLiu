@@ -41,7 +41,15 @@ public interface WaybillService {
      * @param wid 主键
      * @return 是否成功
      */
-    boolean deleteById(Integer wid);
+    boolean deleteById(String tntnumber);
 
     PageInfo<Waybill> queryAll(Integer pageNum, Integer pageSize, Waybill waybill);
+
+    /*
+     * @Author yym
+     * @Description //TODO 修改订单状态
+     * @Date  2022/4/10 15:21
+     * @Param [tntnumber]
+     */
+    boolean update(String tntnumber);
 }

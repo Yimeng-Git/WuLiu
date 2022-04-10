@@ -59,12 +59,12 @@ public class WaybillServiceImpl implements WaybillService {
     /**
      * 通过主键删除数据
      *
-     * @param wid 主键
+     * @param tntnumber 订单号
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer wid) {
-        return this.waybillDao.deleteById(wid) > 0;
+    public boolean deleteById(String tntnumber) {
+        return this.waybillDao.deleteById(tntnumber) > 0;
     }
 
     @Override
@@ -74,5 +74,17 @@ public class WaybillServiceImpl implements WaybillService {
         PageInfo<Waybill> pageInfo = new PageInfo<Waybill>(waybillList);
         System.out.println(pageInfo);
         return pageInfo;
+    }
+
+    /*
+     * @Author yym
+     * @Description //TODO 修改订单状态
+     * @Date  2022/4/10 15:23
+     * @Param [tntnumber]
+     */
+    @Override
+    public boolean update(String tntnumber) {
+        System.out.println(tntnumber);
+        return waybillDao.update(tntnumber) > 0;
     }
 }

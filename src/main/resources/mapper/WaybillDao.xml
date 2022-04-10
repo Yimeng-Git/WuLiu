@@ -86,55 +86,15 @@
     <!--通过主键修改数据-->
     <update id="update">
         update waybill
-        <set>
-            <if test="tntnumber != null and tntnumber != ''">
-                tntnumber = #{tntnumber},
-            </if>
-            <if test="senname != null and senname != ''">
-                senname = #{senname},
-            </if>
-            <if test="senaddress != null and senaddress != ''">
-                senaddress = #{senaddress},
-            </if>
-            <if test="senzipcode != null and senzipcode != ''">
-                senzipcode = #{senzipcode},
-            </if>
-            <if test="senphonenum != null and senphonenum != ''">
-                senphonenum = #{senphonenum},
-            </if>
-            <if test="goodsname != null and goodsname != ''">
-                goodsname = #{goodsname},
-            </if>
-            <if test="rename != null and rename != ''">
-                rename = #{rename},
-            </if>
-            <if test="recphonenum != null and recphonenum != ''">
-                recphonenum = #{recphonenum},
-            </if>
-            <if test="recaddress != null and recaddress != ''">
-                recaddress = #{recaddress},
-            </if>
-            <if test="reczipcode != null and reczipcode != ''">
-                reczipcode = #{reczipcode},
-            </if>
-            <if test="carnum != null and carnum != ''">
-                carnum = #{carnum},
-            </if>
-            <if test="arrive != null and arrive != ''">
-                arrive = #{arrive},
-            </if>
-            <if test="status != null and status != ''">
-                status = #{status},
-            </if>
-        </set>
-        where wid = #{wid}
+        set status = 1
+        where tntnumber = #{tntnumber}
     </update>
 
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
         from waybill
-        where wid = #{wid}
+        where tntnumber = #{tntnumber}
     </delete>
 
     <select id="queryAll" resultMap="WaybillMap">
