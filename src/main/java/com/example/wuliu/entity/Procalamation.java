@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (Procalamation)实体类
@@ -29,7 +29,7 @@ public class Procalamation implements Serializable {
     /**
      * 公告发布时间
      */
-    private Date time;
+    private Date protime;
 
     private Integer pid;
 

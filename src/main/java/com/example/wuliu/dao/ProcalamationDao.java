@@ -64,17 +64,18 @@ public interface ProcalamationDao {
      */
     int deleteById(Integer pid);
 
-    /**
-     * 查询全部
-     *
-     * @param pid 主键
-     * @return 影响行数
-     */
-    List<Procalamation> getAll();
-
     /*
      * @Author yym
-     * @Description //TODO
+     * @Description //TODO 分页查所有
+     * @Date  2022/4/16 20:06
+     * @Param [pageNum, pageSize, procalamation]
+     */
+    List<Procalamation> getAll(Procalamation procalamation);
+
+    
+    /*
+     * @Author yym
+     * @Description //TODO 查询最新的一条
      * @Date  2022/4/4 11:05
      * @Param []
      */

@@ -5,14 +5,16 @@
     <resultMap type="com.example.wuliu.entity.Procalamation" id="ProcalamationMap">
         <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
-        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+        <result property="protime" column="protime" jdbcType="TIMESTAMP"/>
         <result property="pid" column="pid" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="ProcalamationMap">
         select content,
-               title, time, pid
+               title,
+               protime,
+               pid
         from procalamation
         where pid = #{pid}
     </select>
@@ -20,35 +22,37 @@
     <!--查询最新公告-->
     <select id="newNotice" resultMap="ProcalamationMap">
         select content,
-               title, time, pid
+               title,
+               protime,
+               pid
         from procalamation
-        order by time DESC limit 0, 1
+        order by protime DESC limit 0, 1
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="pid" useGeneratedKeys="true">
-        insert into procalamation(content, title, time)
-        values (#{content}, #{title}, #{time})
+        insert into procalamation(content, title, protime)
+        values (#{content}, #{title}, #{protime})
     </insert>
 
     <insert id="insertBatch" keyProperty="pid" useGeneratedKeys="true">
-        insert into procalamation(content, title, time)
+        insert into procalamation(content, title, protime)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.content}, #{entity.title}, #{entity.time})
+            (#{entity.content}, #{entity.title}, #{protime})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="pid" useGeneratedKeys="true">
-        insert into procalamation(content, title, time)
+        insert into procalamation(content, title, protime)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.content}, #{entity.title}, #{entity.time})
+            (#{entity.content}, #{entity.title}, #{protime})
         </foreach>
         on duplicate key update
         content = values(content),
         title = values(title),
-        time = values(time)
+        protime = values(protime)
     </insert>
 
     <!--通过主键修改数据-->
@@ -61,8 +65,8 @@
             <if test="title != null and title != ''">
                 title = #{title},
             </if>
-            <if test="time != null">
-                time = #{time},
+            <if test="protime != null">
+                protime = #{protime},
             </if>
         </set>
         where pid = #{pid}
@@ -76,8 +80,15 @@
     </delete>
 
     <select id="getAll" resultMap="ProcalamationMap">
-        select $allSqlColumn()
-        from wuliu.procalamation
+        select content,
+        title, protime, pid
+        from procalamation
+        <where>
+            <if test="title!=null and title!=''">
+                and title = #{title}
+            </if>
+
+        </where>
     </select>
 
 </mapper>

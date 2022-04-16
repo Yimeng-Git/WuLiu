@@ -1,8 +1,7 @@
 package com.example.wuliu.service;
 
 import com.example.wuliu.entity.Procalamation;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 /**
  * (Procalamation)表服务接口
@@ -26,7 +25,7 @@ public interface ProcalamationService {
      * @param procalamation 实例对象
      * @return 实例对象
      */
-    Procalamation insert(Procalamation procalamation);
+    boolean insert(Procalamation procalamation);
 
     /**
      * 修改数据
@@ -34,7 +33,7 @@ public interface ProcalamationService {
      * @param procalamation 实例对象
      * @return 实例对象
      */
-    Procalamation update(Procalamation procalamation);
+    boolean update(Procalamation procalamation);
 
     /**
      * 通过主键删除数据
@@ -44,7 +43,19 @@ public interface ProcalamationService {
      */
     boolean deleteById(Integer pid);
 
+    /*
+     * @Author yym
+     * @Description //TODO 查询最新的公告
+     * @Date  2022/4/16 20:05
+     * @Param []
+     */
     Procalamation newNotice();
 
-    List<Procalamation> getALl();
+    /*
+     * @Author yym
+     * @Description //TODO 分页查所有
+     * @Date  2022/4/16 20:06
+     * @Param [pageNum, pageSize, procalamation]
+     */
+    PageInfo<Procalamation> getALl(Integer pageNum, Integer pageSize, Procalamation procalamation);
 }
