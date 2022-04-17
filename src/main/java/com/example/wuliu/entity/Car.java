@@ -28,7 +28,7 @@ public class Car implements Serializable {
     /**
      * 主键
      */
-    private String cid;
+    private Integer cid;
     /**
      * 车辆编号
      */

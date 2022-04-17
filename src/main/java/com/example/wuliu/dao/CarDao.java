@@ -21,7 +21,7 @@ public interface CarDao {
      * @param cid 主键
      * @return 实例对象
      */
-    Car queryById(String cid);
+    Car queryById(Integer cid);
 
     /**
      * 新增数据
@@ -62,7 +62,7 @@ public interface CarDao {
      * @param cid 主键
      * @return 影响行数
      */
-    int deleteById(String cid);
+    int deleteById(Integer cid);
 
     /**
      * 查询全部
@@ -70,6 +70,6 @@ public interface CarDao {
      * @param cid 主键
      * @return 影响行数
      */
-    List<Car> getAll();
+    List<Car> getAll(Car car);
 }
 

@@ -54,6 +54,8 @@ public class ProcalamationServiceImpl implements ProcalamationService {
      */
     @Override
     public boolean update(Procalamation procalamation) {
+        Date date = new Date();
+        procalamation.setProtime(date);
         return this.procalamationDao.update(procalamation) > 0;
     }
 

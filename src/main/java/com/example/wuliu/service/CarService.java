@@ -1,6 +1,7 @@
 package com.example.wuliu.service;
 
 import com.example.wuliu.entity.Car;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 车辆(Car)表服务接口
@@ -16,7 +17,7 @@ public interface CarService {
      * @param cid 主键
      * @return 实例对象
      */
-    Car queryById(String cid);
+    Car queryById(Integer cid);
 
     /**
      * 新增数据
@@ -24,7 +25,7 @@ public interface CarService {
      * @param car 实例对象
      * @return 实例对象
      */
-    Car insert(Car car);
+    boolean insert(Car car);
 
     /**
      * 修改数据
@@ -40,6 +41,7 @@ public interface CarService {
      * @param cid 主键
      * @return 是否成功
      */
-    boolean deleteById(String cid);
+    boolean deleteById(Integer cid);
 
+    PageInfo queryAll(Integer pageNum, Integer pageSize, Car car);
 }

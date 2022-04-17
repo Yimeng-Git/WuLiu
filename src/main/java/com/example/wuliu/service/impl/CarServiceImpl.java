@@ -1,11 +1,14 @@
 package com.example.wuliu.service.impl;
 
-import com.example.wuliu.entity.Car;
 import com.example.wuliu.dao.CarDao;
+import com.example.wuliu.entity.Car;
 import com.example.wuliu.service.CarService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 车辆(Car)表服务实现类
@@ -25,7 +28,7 @@ public class CarServiceImpl implements CarService {
      * @return 实例对象
      */
     @Override
-    public Car queryById(String cid) {
+    public Car queryById(Integer cid) {
         return this.carDao.queryById(cid);
     }
 
@@ -36,9 +39,9 @@ public class CarServiceImpl implements CarService {
      * @return 实例对象
      */
     @Override
-    public Car insert(Car car) {
-        this.carDao.insert(car);
-        return car;
+    public boolean insert(Car car) {
+        car.setStatus("0");
+        return this.carDao.insert(car) > 0;
     }
 
     /**
@@ -60,7 +63,28 @@ public class CarServiceImpl implements CarService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(String cid) {
+    public boolean deleteById(Integer cid) {
         return this.carDao.deleteById(cid) > 0;
+    }
+
+    @Override
+    public PageInfo queryAll(Integer pageNum, Integer pageSize, Car car) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Car> carList = carDao.getAll(car);
+        for (Car car1 : carList) {
+            switch (car1.getStatus()) {
+                case "0":
+                    car1.setStatus("空闲中");
+                    break;
+                case "1":
+                    car1.setStatus("运输中");
+                    break;
+                case "2":
+                    car1.setStatus("已到达");
+                    break;
+            }
+        }
+        PageInfo pageInfo = new PageInfo(carList);
+        return pageInfo;
     }
 }

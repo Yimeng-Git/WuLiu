@@ -2,6 +2,7 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Car;
 import com.example.wuliu.service.CarService;
+import com.example.wuliu.util.R;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
  * @since 2022-03-27 15:41:51
  */
 @RestController
-@RequestMapping("car")
+@RequestMapping("/car")
 public class CarController {
     /**
      * 服务对象
@@ -29,7 +30,7 @@ public class CarController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<Car> queryById(@PathVariable("id") String id) {
+    public ResponseEntity<Car> queryById(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.carService.queryById(id));
     }
 
@@ -39,9 +40,9 @@ public class CarController {
      * @param car 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<Car> add(Car car) {
-        return ResponseEntity.ok(this.carService.insert(car));
+    @PostMapping("/add")
+    public R add(@RequestBody Car car) {
+        return R.ok().setData(this.carService.insert(car));
     }
 
     /**
@@ -58,13 +59,18 @@ public class CarController {
     /**
      * 删除数据
      *
-     * @param id 主键
+     * @param cid 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(String id) {
-        return ResponseEntity.ok(this.carService.deleteById(id));
+    @DeleteMapping("/delete/{cid}")
+    public R deleteById(@PathVariable Integer cid) {
+        return R.ok().setData(this.carService.deleteById(cid));
     }
 
+    @GetMapping("/findAll")
+    public R fandAll(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                     @RequestParam(value = "pageSize") Integer pageSize, Car car) {
+        return R.ok().setData(this.carService.queryAll(pageNum, pageSize, car));
+    }
 }
 

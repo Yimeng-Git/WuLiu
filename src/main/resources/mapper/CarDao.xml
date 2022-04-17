@@ -5,7 +5,7 @@
     <resultMap type="com.example.wuliu.entity.Car" id="CarMap">
         <result property="area" column="area" jdbcType="VARCHAR"/>
         <result property="destination" column="destination" jdbcType="VARCHAR"/>
-        <result property="cid" column="cid" jdbcType="VARCHAR"/>
+        <result property="cid" column="cid" jdbcType="INTEGER"/>
         <result property="carnum" column="carnum" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="VARCHAR"/>
     </resultMap>
@@ -75,8 +75,22 @@
     </delete>
 
     <select id="getAll" resultMap="CarMap">
-        select $allSqlColumn()
-        from wuliu.car
+        select
+        area,
+        destination,
+        cid,
+        carnum,
+        status
+        from car
+        <where>
+            <if test="status!=null and status!=''">
+                and status = #{status}
+            </if>
+            <if test="carnum!=null and carnum!=''">
+                and carnum like '%${carnum}%'
+            </if>
+
+        </where>
     </select>
 
 </mapper>
