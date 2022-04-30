@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * (Waybill)表服务实现类
@@ -39,9 +40,16 @@ public class WaybillServiceImpl implements WaybillService {
      * @return 实例对象
      */
     @Override
-    public Waybill insert(Waybill waybill) {
-        this.waybillDao.insert(waybill);
-        return waybill;
+    public boolean insert(Waybill waybill) {
+        //1.UUID生成32位数
+        String uuid32 = UUID.randomUUID().toString().replace("-", "");
+        //2.然后截取前面8位
+        String uuid8 = uuid32.substring(0, 8);
+        waybill.setTntnumber(uuid8);
+        waybill.setStatus("0");
+        waybill.setArrive("运输中");
+        int i = this.waybillDao.insert(waybill);
+        return i > 0;
     }
 
     /**
@@ -86,5 +94,20 @@ public class WaybillServiceImpl implements WaybillService {
     public boolean update(String tntnumber) {
         System.out.println(tntnumber);
         return waybillDao.update(tntnumber) > 0;
+    }
+
+    /*
+     * @Author yym
+     * @Description //TODO 物流资源可分配订单
+     * @Date  2022/4/30 15:45
+     * @Param []
+     */
+    
+    @Override
+    public List<Waybill> All() {
+        Waybill waybill = new Waybill();
+        waybill.setStatus("0");
+        List<Waybill> waybillList = waybillDao.queryAll(waybill);
+        return waybillList;
     }
 }

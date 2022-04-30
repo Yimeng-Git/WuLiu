@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (Traninfo)实体类
@@ -23,7 +23,7 @@ public class Traninfo implements Serializable {
     /**
      * 开始时间
      */
-    private Date starttime;
+    private Date startTime;
     /**
      * 订单号
      */
@@ -35,8 +35,9 @@ public class Traninfo implements Serializable {
     /**
      * 预计到达时间
      */
-    private Date arrivetime;
+    private String arriveTime;
 
+    private String status;
 
 }
 

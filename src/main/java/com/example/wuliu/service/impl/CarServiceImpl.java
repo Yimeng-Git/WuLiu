@@ -1,6 +1,7 @@
 package com.example.wuliu.service.impl;
 
 import com.example.wuliu.dao.CarDao;
+import com.example.wuliu.dao.TraninfoDao;
 import com.example.wuliu.entity.Car;
 import com.example.wuliu.service.CarService;
 import com.github.pagehelper.PageHelper;
@@ -20,6 +21,9 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     @Resource
     private CarDao carDao;
+
+    @Resource
+    private TraninfoDao traninfoDao;
 
     /**
      * 通过ID查询单条数据
@@ -52,7 +56,7 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public Car update(Car car) {
-        this.carDao.update(car);
+//        this.carDao.update(car);
         return this.queryById(car.getCid());
     }
 
@@ -64,6 +68,8 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public boolean deleteById(Integer cid) {
+        Car car = carDao.queryById(cid);
+        traninfoDao.deleteById(car.getCarnum());
         return this.carDao.deleteById(cid) > 0;
     }
 
@@ -86,5 +92,12 @@ public class CarServiceImpl implements CarService {
         }
         PageInfo pageInfo = new PageInfo(carList);
         return pageInfo;
+    }
+
+    @Override
+    public List<Car> All() {
+        Car car = new Car();
+        List<Car> carList = carDao.getAll(car);
+        return carList;
     }
 }

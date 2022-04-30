@@ -4,6 +4,7 @@ import com.example.wuliu.entity.Waybill;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,9 +52,11 @@ public interface WaybillDao {
     /**
      * 修改数据
      *
-     * @param tntnumber 实例
+     * @param waybill 实例
      * @return 影响行数
      */
+    int arrive(ArrayList list);
+
     int update(String tntnumber);
 
     /**
@@ -72,6 +75,12 @@ public interface WaybillDao {
      */
     List<Waybill> getAll();
 
+    /*
+     * @Author yym
+     * @Description //TODO 查询所有订单
+     * @Date  2022/4/30 15:44
+     * @Param [waybill]
+     */
     List<Waybill> queryAll(Waybill waybill);
 }
 

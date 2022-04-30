@@ -99,7 +99,7 @@
                 eMail = #{eMail},
             </if>
         </set>
-        where id = #{id}
+        where username = #{username}
     </update>
 
     <!--通过主键删除-->

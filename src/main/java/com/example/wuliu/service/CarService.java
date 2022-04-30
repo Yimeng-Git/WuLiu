@@ -3,6 +3,8 @@ package com.example.wuliu.service;
 import com.example.wuliu.entity.Car;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * 车辆(Car)表服务接口
  *
@@ -44,4 +46,6 @@ public interface CarService {
     boolean deleteById(Integer cid);
 
     PageInfo queryAll(Integer pageNum, Integer pageSize, Car car);
+
+    List<Car> All();
 }

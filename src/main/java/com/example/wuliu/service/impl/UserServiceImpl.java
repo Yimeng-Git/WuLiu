@@ -49,9 +49,9 @@ public class UserServiceImpl implements UserService {
      * @return 实例对象
      */
     @Override
-    public User update(User user) {
-        this.userDao.update(user);
-        return this.queryById(user.getId());
+    public boolean update(User user) {
+
+        return this.userDao.update(user) > 0;
     }
 
     /**

@@ -54,9 +54,9 @@ public class WaybillController {
      * @param waybill 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<Waybill> add(Waybill waybill) {
-        return ResponseEntity.ok(this.waybillService.insert(waybill));
+    @PostMapping("/add")
+    public R add(@RequestBody Waybill waybill) {
+        return R.ok().setData(this.waybillService.insert(waybill));
     }
 
     /**
@@ -67,7 +67,7 @@ public class WaybillController {
      */
     @PutMapping("/success/{tntnumber}")
     public R edit(@PathVariable String tntnumber) {
-        
+
         return R.ok().setData(this.waybillService.update(tntnumber));
     }
 
@@ -83,5 +83,9 @@ public class WaybillController {
         return R.ok().setData(this.waybillService.deleteById(tntnumber));
     }
 
+    @GetMapping("/all")
+    public R All() {
+        return R.ok().setData(this.waybillService.All());
+    }
 }
 

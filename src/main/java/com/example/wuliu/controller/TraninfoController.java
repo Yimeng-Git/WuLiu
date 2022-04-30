@@ -2,6 +2,8 @@ package com.example.wuliu.controller;
 
 import com.example.wuliu.entity.Traninfo;
 import com.example.wuliu.service.TraninfoService;
+import com.example.wuliu.util.R;
+import com.example.wuliu.vo.traninfoVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +30,10 @@ public class TraninfoController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("{id}")
-    public ResponseEntity<Traninfo> queryById(@PathVariable("id") Integer id) {
-        return ResponseEntity.ok(this.traninfoService.queryById(id));
+    @GetMapping("/findAll")
+    public R fandAll(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                     @RequestParam(value = "pageSize") Integer pageSize, Traninfo traninfo) {
+        return R.ok().setData(this.traninfoService.queryAll(pageNum, pageSize, traninfo));
     }
 
     /**
@@ -39,20 +42,20 @@ public class TraninfoController {
      * @param traninfo 实体
      * @return 新增结果
      */
-    @PostMapping
-    public ResponseEntity<Traninfo> add(Traninfo traninfo) {
-        return ResponseEntity.ok(this.traninfoService.insert(traninfo));
+    @PostMapping("/add")
+    public R add(@RequestBody Traninfo traninfo) {
+        return R.ok().setData(this.traninfoService.insert(traninfo));
     }
 
     /**
      * 编辑数据
      *
-     * @param traninfo 实体
+     * @param tntnumber,carnum
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<Traninfo> edit(Traninfo traninfo) {
-        return ResponseEntity.ok(this.traninfoService.update(traninfo));
+    @PutMapping("/success")
+    public R edit(@RequestBody traninfoVO traninfoVo) {
+        return R.ok().setData(this.traninfoService.update(traninfoVo));
     }
 
     /**
@@ -61,9 +64,9 @@ public class TraninfoController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Integer id) {
-        return ResponseEntity.ok(this.traninfoService.deleteById(id));
+    @DeleteMapping("/delete/{tntnumber}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable String tntnumber) {
+        return ResponseEntity.ok(this.traninfoService.deleteById(tntnumber));
     }
 
 }

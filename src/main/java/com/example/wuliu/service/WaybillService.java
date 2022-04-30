@@ -3,6 +3,8 @@ package com.example.wuliu.service;
 import com.example.wuliu.entity.Waybill;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * (Waybill)表服务接口
  *
@@ -25,7 +27,7 @@ public interface WaybillService {
      * @param waybill 实例对象
      * @return 实例对象
      */
-    Waybill insert(Waybill waybill);
+    boolean insert(Waybill waybill);
 
     /**
      * 修改数据
@@ -52,4 +54,6 @@ public interface WaybillService {
      * @Param [tntnumber]
      */
     boolean update(String tntnumber);
+
+    List<Waybill> All();
 }

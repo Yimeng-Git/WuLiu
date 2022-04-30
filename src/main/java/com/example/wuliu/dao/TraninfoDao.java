@@ -4,6 +4,7 @@ import com.example.wuliu.entity.Traninfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public interface TraninfoDao {
      * @param traninfo 实例对象
      * @return 影响行数
      */
-    int update(Traninfo traninfo);
+    int update(String tntnumber);
 
     /**
      * 通过主键删除数据
@@ -62,7 +63,7 @@ public interface TraninfoDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteById(String tntnumber);
 
     /**
      * 查询全部
@@ -71,5 +72,12 @@ public interface TraninfoDao {
      * @return 影响行数
      */
     List<Traninfo> getAll();
+
+    List<Traninfo> queryAll(Traninfo traninfo);
+
+    int go(ArrayList list);
+
+    List<Traninfo> getWay(String carnum);
+
 }
 

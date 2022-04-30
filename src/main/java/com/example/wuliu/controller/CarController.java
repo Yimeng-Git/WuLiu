@@ -72,5 +72,10 @@ public class CarController {
                      @RequestParam(value = "pageSize") Integer pageSize, Car car) {
         return R.ok().setData(this.carService.queryAll(pageNum, pageSize, car));
     }
+
+    @GetMapping("/all")
+    public R All() {
+        return R.ok().setData(this.carService.All());
+    }
 }
 

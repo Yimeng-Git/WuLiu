@@ -89,9 +89,9 @@ public class UserController {
      * @param user 实体
      * @return 编辑结果
      */
-    @PutMapping
-    public ResponseEntity<User> edit(User user) {
-        return ResponseEntity.ok(this.userService.update(user));
+    @PutMapping("/update")
+    public R edit(@RequestBody User user) {
+        return R.ok().setData(this.userService.update(user));
     }
 
     /**

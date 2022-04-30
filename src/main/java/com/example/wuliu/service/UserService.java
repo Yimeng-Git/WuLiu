@@ -32,7 +32,7 @@ public interface UserService {
      * @param user 实例对象
      * @return 实例对象
      */
-    User update(User user);
+    boolean update(User user);
 
     /**
      * 通过主键删除数据

@@ -51,10 +51,10 @@ public interface CarDao {
     /**
      * 修改数据
      *
-     * @param car 实例对象
+     * @param carnum 实例
      * @return 影响行数
      */
-    int update(Car car);
+    int update(String carnum);
 
     /**
      * 通过主键删除数据
@@ -71,5 +71,14 @@ public interface CarDao {
      * @return 影响行数
      */
     List<Car> getAll(Car car);
+
+    /*
+     * @Author yym
+     * @Description //TODO  查询所有车辆
+     * @Date  2022/4/30 15:43
+     * @Param [car]
+     */
+    int go(Car car);
+
 }
 
