@@ -19,7 +19,6 @@
         from car
         where cid = #{cid}
     </select>
-
     <!--新增所有列-->
     <insert id="insert" keyProperty="cid" useGeneratedKeys="true">
         insert into car(area, destination, carnum, status)

@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtils {
-    //    过期时间设置为15分钟
+    //    过期时间设置为60分钟
     private static final long EXPTRE_TIME = 60 * 60 * 1000;
     /**
      * token私钥

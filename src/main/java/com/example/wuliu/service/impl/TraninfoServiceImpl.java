@@ -27,10 +27,8 @@ import java.util.List;
 public class TraninfoServiceImpl implements TraninfoService {
     @Resource
     private TraninfoDao traninfoDao;
-
     @Resource
     private WaybillDao waybillDao;
-
     @Resource
     private CarDao carDao;
 
@@ -77,10 +75,6 @@ public class TraninfoServiceImpl implements TraninfoService {
         for (Traninfo waybill : list) {
             strings.add(waybill.getTntnumber());
         }
-//        Waybill waybill = new Waybill();
-//        waybill.setTntnumber(traninfoVo.getTntnumber());
-//        waybill.setArrive("已到达");
-        System.out.println(strings);
         int i = this.waybillDao.arrive(strings);
         if (i > 0) {
             this.traninfoDao.go(strings);

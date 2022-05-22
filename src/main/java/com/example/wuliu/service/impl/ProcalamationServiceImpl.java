@@ -78,7 +78,6 @@ public class ProcalamationServiceImpl implements ProcalamationService {
      */
     @Override
     public Procalamation newNotice() {
-
         return this.procalamationDao.newNotice();
     }
 

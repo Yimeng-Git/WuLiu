@@ -47,7 +47,6 @@ public class UserController {
      */
     @GetMapping("/verify")
     public ResponseEntity<Boolean> verify(@RequestParam("token") String token) {
-
         token = token.substring(7, token.length());
         if (StringUtils.isBlank(token)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
@@ -65,7 +64,6 @@ public class UserController {
     public ResponseEntity<String> adminLogin(@RequestBody User user, HttpServletRequest request,
                                              HttpServletResponse response) {
         String token = this.userService.adminLogin(user.getUsername(), user.getPassword());
-//        System.out.print(token);
         if (StringUtils.isBlank(token)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }

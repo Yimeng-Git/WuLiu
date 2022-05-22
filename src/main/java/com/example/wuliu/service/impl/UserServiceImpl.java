@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean update(User user) {
-
         return this.userDao.update(user) > 0;
     }
 
@@ -79,17 +78,13 @@ public class UserServiceImpl implements UserService {
                 user.setUsername(username);
                 user.setPassword(password);
             }
-            //2.查询结果为空，则直接返回null
             User user1 = userDao.selectOne(user);
             if (user1 == null) {
                 return null;
             }
-            //数据库匹配，查询该id
             int id = user1.getId();
-            //查询成功，则生成token
             String token = JwtUtils.Sign(username, String.valueOf(id));
             return token;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;

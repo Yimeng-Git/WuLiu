@@ -78,7 +78,7 @@ public interface WaybillDao {
     /*
      * @Author yym
      * @Description //TODO 查询所有订单
-     * @Date  2022/4/30 15:44
+     * @Date  2022/4/30 19:10
      * @Param [waybill]
      */
     List<Waybill> queryAll(Waybill waybill);

@@ -53,18 +53,6 @@ public class WaybillServiceImpl implements WaybillService {
     }
 
     /**
-     * 修改数据
-     *
-     * @param waybill 实例对象
-     * @return 实例对象
-     */
-//    @Override
-//    public Waybill update(Waybill waybill) {
-//        this.waybillDao.update(waybill);
-//        return this.queryById(waybill.getWid());
-//    }
-
-    /**
      * 通过主键删除数据
      *
      * @param tntnumber 订单号
@@ -80,7 +68,6 @@ public class WaybillServiceImpl implements WaybillService {
         PageHelper.startPage(pageNum, pageSize);
         List<Waybill> waybillList = waybillDao.queryAll(waybill);
         PageInfo<Waybill> pageInfo = new PageInfo<Waybill>(waybillList);
-        System.out.println(pageInfo);
         return pageInfo;
     }
 
@@ -102,7 +89,6 @@ public class WaybillServiceImpl implements WaybillService {
      * @Date  2022/4/30 15:45
      * @Param []
      */
-    
     @Override
     public List<Waybill> All() {
         Waybill waybill = new Waybill();

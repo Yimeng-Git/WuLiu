@@ -31,7 +31,6 @@ public class WaybillController {
      */
     @GetMapping("/number/{tntnumber}")
     public ResponseEntity<Waybill> queryById(@PathVariable("tntnumber") String tntnumber) {
-        System.out.println(tntnumber);
         return ResponseEntity.ok(this.waybillService.queryByNumber(tntnumber));
     }
 
@@ -46,7 +45,6 @@ public class WaybillController {
                      @RequestParam(value = "pageSize") Integer pageSize, Waybill waybill) {
         return R.ok().setData(this.waybillService.queryAll(pageNum, pageSize, waybill));
     }
-
 
     /**
      * 新增数据
@@ -79,7 +77,6 @@ public class WaybillController {
      */
     @DeleteMapping("/delete/{tntnumber}")
     public R deleteById(@PathVariable String tntnumber) {
-
         return R.ok().setData(this.waybillService.deleteById(tntnumber));
     }
 

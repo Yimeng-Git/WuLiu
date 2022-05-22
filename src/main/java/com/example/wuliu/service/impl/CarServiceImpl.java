@@ -21,7 +21,6 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     @Resource
     private CarDao carDao;
-
     @Resource
     private TraninfoDao traninfoDao;
 
@@ -56,7 +55,6 @@ public class CarServiceImpl implements CarService {
      */
     @Override
     public Car update(Car car) {
-//        this.carDao.update(car);
         return this.queryById(car.getCid());
     }
 
@@ -84,9 +82,6 @@ public class CarServiceImpl implements CarService {
                     break;
                 case "1":
                     car1.setStatus("运输中");
-                    break;
-                case "2":
-                    car1.setStatus("已到达");
                     break;
             }
         }

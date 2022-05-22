@@ -8,7 +8,6 @@
         <result property="protime" column="protime" jdbcType="TIMESTAMP"/>
         <result property="pid" column="pid" jdbcType="INTEGER"/>
     </resultMap>
-
     <!--查询单个-->
     <select id="queryById" resultMap="ProcalamationMap">
         select content,
@@ -18,7 +17,6 @@
         from procalamation
         where pid = #{pid}
     </select>
-
     <!--查询最新公告-->
     <select id="newNotice" resultMap="ProcalamationMap">
         select content,
@@ -71,23 +69,19 @@
         </set>
         where pid = #{pid}
     </update>
-
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
         from procalamation
         where pid = #{pid}
     </delete>
-
     <select id="getAll" resultMap="ProcalamationMap">
-        select content,
-        title, protime, pid
+        select content,title, protime, pid
         from procalamation
         <where>
             <if test="title!=null and title!=''">
-                and title = #{title}
+                and title like '%' #{title} '%'
             </if>
-
         </where>
     </select>
 
